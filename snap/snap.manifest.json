@@ -1,0 +1,24 @@
+{
+  "version": "0.1.0",
+  "proposedName": "Snap WASM example",
+  "description": "Snap example using WASM for MetaMask Snap",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/piotr-roslaniec/snap-wasm-example/snap"
+  },
+  "source": {
+    "shasum": "mLzScil1GPV9oNR+x//H9/OBli+WBksFwe9+z11M5mU=",
+    "location": {
+      "npm": {
+        "filePath": "dist/bundle.js",
+        "iconPath": "images/icon.svg",
+        "packageName": "snap-wasm-example",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
+  },
+  "initialPermissions": {
+    "endowment:wasm": {}
+  },
+  "manifestVersion": "0.1"
+}

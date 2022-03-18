@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+</head>
+<title>Hello, Snaps!</title>
+<link rel="icon" type="image/svg" href="./images/icon.svg" />
+</head>
+
+<body>
+  <h1>MetaMask Snap</h1>
+  <details>
+    <summary>Installation Instructions</summary>
+    In order to run this demo, we need to install a modified snap version:
+    <ul>
+      <li>Pull down this <a href="https://github.com/MetaMask/metamask-extension/tree/eth-denver-2022">branch</a> </li>
+      <li>Build the extension locally: <code>yarn setup && yarn dist --build-type flask</code></li>
+      <li>Load the unpacked extension (see "custom build" instructions) from <a
+          href="https://github.com/MetaMask/metamask-extension/tree/eth-denver-2022#other-docs">here</a></li>
+    </ul>
+    </ul>
+  </details>
+
+  <p>First, let's connect to MetaMask and install the snap.</p>
+  <button class="connect">Connect</button>
+  <button class="send">Send</button>
+  <br />
+
+  <script>
+    const snapId = `local:${window.location.href}`;
+
+    const connectButton = document.querySelector('button.connect')
+    const sendButton = document.querySelector('button.send')
+
+    connectButton.addEventListener('click', connect)
+    sendButton.addEventListener('click', send)
+
+    async function connect() {
+      try {
+        await ethereum.request({
+          method: 'wallet_enable',
+          params: [{
+            wallet_snap: { [snapId]: {} },
+          }]
+        })
+      } catch (error) {
+        // The `wallet_enable` call will throw if the requested permissions are
+        // rejected.
+        if (error.code === 4001) {
+          console.error('The user rejected the request.');
+          alert('The user rejected the request.');
+        } else {
+          console.error(error)
+          alert('Error: ' + error.message || error)
+        }
+      }
+    }
+
+    // here we call the snap's "hello" method
+    async function send() {
+      try {
+        const response = await ethereum.request({
+          method: 'wallet_invokeSnap',
+          params: [snapId, {
+            method: 'hello'
+          }]
+        })
+        alert(`Snap response: ${response}`)
+      } catch (err) {
+        console.error(err)
+        alert('Problem happened: ' + err.message || err)
+      }
+    }
+  </script>
+
+</html>

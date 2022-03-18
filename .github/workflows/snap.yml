@@ -1,0 +1,66 @@
+name: Build and deploy the snap
+
+env:
+  NODE_VERSION: "14.x"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy-snap:
+    name: "Deploy snap"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      - name: Install latest stable Rust version
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Build rust-lib
+        run: wasm-pack build --target web
+        working-directory: rust-lib
+
+      - name: Install wasm-bundler
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: wasm-bundler
+          
+      - name: Buid wasm-bundler
+        run: npx patch-package && yarn build
+        working-directory: wasm-bundler
+        
+      - name: Install snap
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: snap
+
+      - name: Build snap
+        run: yarn build && yarn build:website
+        working-directory: snap
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.0
+        with:
+          publish-dir: "./snap/dist"
+          production-branch: main
+          deploy-message: "Deploy from GitHub Actions"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_SNAP }}

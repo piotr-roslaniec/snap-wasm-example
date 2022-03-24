@@ -7,7 +7,7 @@
     "url": "https://github.com/piotr-roslaniec/snap-wasm-example/snap"
   },
   "source": {
-    "shasum": "mLzScil1GPV9oNR+x//H9/OBli+WBksFwe9+z11M5mU=",
+    "shasum": "EM9qxLzsETmBIkBBGBbWytUNXoTqmvnsRxem8sGA9XY=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",

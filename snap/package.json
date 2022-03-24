@@ -16,7 +16,7 @@
   "scripts": {
     "build:clean": "yarn clean && yarn build",
     "build:website": "node ./scripts/build-website.js && cp snap.manifest.json dist/",
-    "build": "yarn wasm:hex && mm-snap build --transpilationMode all --verboseErrors && cp snap.manifest.json dist/",
+    "build": "yarn wasm:hex && mm-snap build --verboseErrors && cp snap.manifest.json dist/",
     "clean": "rimraf dist",
     "serve": "mm-snap serve",
     "lint:eslint": "eslint . --cache --ext js,ts",
@@ -33,7 +33,7 @@
     "@metamask/eslint-config": "^8.0.0",
     "@metamask/eslint-config-jest": "^8.0.0",
     "@metamask/eslint-config-nodejs": "^8.0.0",
-    "@metamask/snaps-cli": "0.9.0",
+    "@metamask/snaps-cli": "^0.10.6",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",

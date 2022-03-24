@@ -6029,11 +6029,6 @@ vm-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-"wasm-bundler@file:../wasm-bundler":
-  version "0.1.0"
-  dependencies:
-    rust-lib "file:../../../../../.cache/yarn/v6/npm-wasm-bundler-0.1.0-7c5e427f-d1b3-457c-ba0c-1a71772324ec-1648127095176/node_modules/rust-lib/pkg"
-
 web3-provider-engine@^16.0.3:
   version "16.0.3"
   resolved "https://registry.yarnpkg.com/web3-provider-engine/-/web3-provider-engine-16.0.3.tgz#8ff93edf3a8da2f70d7f85c5116028c06a0d9f07"

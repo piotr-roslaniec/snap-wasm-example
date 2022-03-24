@@ -1,6 +1,6 @@
 # MetaMask Snaps WASM example
 
-This repository shows how to integrate a workaround for loading `wasm-pack` WASM modules in MetaMask Snaps.
+This repository shows how to use `wasm-pack` WASM modules in MetaMask Snaps.
 
 ## Usage
 
@@ -8,18 +8,10 @@ First, build your Rust project used as a `./snap` dependency:
 
 ```bash
 cd rust-lib
-wasm-pack build --target web
+wasm-pack build --target no-modules
 ```
 
-Now, bundle your WASM package into a snap-friendly format:
-
-```bash
-cd wasm-bundler
-yarn install
-yarn build
-```
-
-Lastly, you can build and run your snap:
+Then, you can build and run your snap:
 
 ```bash
 cd snap

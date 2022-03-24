@@ -26,7 +26,7 @@
     "wasm:hex": "node ./scripts/wasm-hex.js"
   },
   "dependencies": {
-    "wasm-bundler": "file:../wasm-bundler",
+    "rust-lib": "file:../rust-lib/pkg",
     "eth-rpc-errors": "^4.0.3"
   },
   "devDependencies": {

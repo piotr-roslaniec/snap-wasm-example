@@ -10,5 +10,6 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
 pub fn add(x: u32, y: u32) -> u32 {
+    utils::set_panic_hook();
     x + y
 }

@@ -34,7 +34,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Build rust-lib
-        run: wasm-pack build --target web
+        run: wasm-pack build --target no-modules
         working-directory: rust-lib
 
       - name: Install snap
